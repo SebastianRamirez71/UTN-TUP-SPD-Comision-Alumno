@@ -1,0 +1,20 @@
+// Código Ejemplo
+int Led_Pin = 10;
+void setup()
+{
+// Configurar Pin como Salida
+pinMode(Led_Pin, OUTPUT);
+}
+void loop()
+{
+// Encender Led
+digitalWrite(Led_Pin, HIGH);
+// Esperar 2 Segundos
+delay(500);
+// Apagar Led
+digitalWrite(Led_Pin, LOW);
+// Esperar 1 Segundo
+delay(500);
+}
+
+//baje el delay a 500.
