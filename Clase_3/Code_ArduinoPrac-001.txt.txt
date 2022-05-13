@@ -1,4 +1,4 @@
-// Código Ejemplo
+// ARDUINO - 001
 int Led_Pin = 10;
 void setup()
 {

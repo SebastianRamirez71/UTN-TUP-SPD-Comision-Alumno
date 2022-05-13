@@ -1,10 +1,21 @@
-// Código Ejemplol__
-int Led_Pin = 3;
+// ARDUINO-04-003
+int sensorPin = 0;
+
+// Variables de Luz
+int Led_Pin = 6;
 int Fot_Pin = A0;
 int Int_Pin = 2;
 int sensorValue = 0;
 int inputValue = 0;
+// Variables de Temperatura
+int readValue = 0;
+int lastValue = 1;
+int tempPin = A1;
+float voltsValue;
+float tempValue;
 int counter = 0;
+int start = 0;
+int stop = 0;
 // Limites Invierno
 int start1 = 18;
 int stop1 = 24;
@@ -28,11 +39,27 @@ digitalWrite(Led_Pin, 1);
 }
 else
 {
-if(counter >= start1)
+// Lectura Temperatura
+readValue = analogRead(sensorPin);
+lastValue = readValue;
+voltsValue = 5.0 / 1024 * readValue;
+tempValue = voltsValue * 100 - 50;
+if( tempValue < 20 ){
+start = start1;
+stop = stop1;
+}
+else
+{
+start = start2;
+stop = stop2;
+}
+//
+// Lectura Luz
+if(counter >= start)
 {
 // Lectura Analógica
 sensorValue = analogRead(Fot_Pin);
-if(sensorValue < 400)
+if(sensorValue < 500)
 {
 Serial.println("Led: Encendido");
 digitalWrite(Led_Pin, 1);
@@ -54,5 +81,5 @@ if (counter == 24)
 {
 counter =0;
 }
- delay(600);
+ delay(1000);
 }
